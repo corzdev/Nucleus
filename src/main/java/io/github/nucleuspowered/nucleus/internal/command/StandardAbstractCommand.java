@@ -550,7 +550,7 @@ public abstract class StandardAbstractCommand<T extends CommandSource> implement
 
         final CommandArgs args = new CommandArgs(arguments, singleArgs);
 
-        final Set<String> options = Sets.newHashSet();
+        final List<String> options = Lists.newArrayList();
         CommandContext context = new CommandContext();
         context.putArg(COMPLETION_ARG, true); // We don't care for the value.
 
@@ -560,7 +560,7 @@ public abstract class StandardAbstractCommand<T extends CommandSource> implement
         args.setState(state);
 
         options.addAll(this.argumentParser.complete(source, args, context));
-        return Lists.newArrayList(options);
+        return options.stream().distinct().collect(Collectors.toList());
     }
 
     /**

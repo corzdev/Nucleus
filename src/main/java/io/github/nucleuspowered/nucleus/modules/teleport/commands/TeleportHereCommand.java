@@ -52,8 +52,14 @@ public class TeleportHereCommand extends AbstractCommand<Player> {
     private final String playerKey = "subject";
     private final String quietKey = "quiet";
 
-    @Inject private TeleportHandler handler;
-    @Inject private TeleportConfigAdapter tca;
+    private final TeleportHandler handler;
+    private final TeleportConfigAdapter tca;
+
+    @Inject
+    public TeleportHereCommand(TeleportHandler handler, TeleportConfigAdapter tca) {
+        this.handler = handler;
+        this.tca = tca;
+    }
 
     @Override
     public Map<String, PermissionInformation> permissionSuffixesToRegister() {

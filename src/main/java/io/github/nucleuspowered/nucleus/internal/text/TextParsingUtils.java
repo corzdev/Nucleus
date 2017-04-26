@@ -202,8 +202,12 @@ public class TextParsingUtils {
 
         // Add the last bit.
         if (remaining != null) {
-            texts.add(Text.builder().color(st.colour).style(st.style)
-                    .append(TextSerializers.FORMATTING_CODE.deserialize(remaining)).build());
+            Text.Builder tb = Text.builder().color(st.colour).style(st.style).append(TextSerializers.FORMATTING_CODE.deserialize(remaining));
+            if (remaining.matches("^\\s+&r.*")) {
+                tb.style(TextStyles.RESET);
+            }
+
+            texts.add(tb.build());
         }
 
         // Return the list.

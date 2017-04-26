@@ -19,6 +19,7 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.args.CommandElement;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.Locatable;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -31,6 +32,7 @@ import java.util.Optional;
 @NoCost
 @NoWarmup
 @RegisterCommand(value = {"set"}, subcommandOf = BorderCommand.class)
+@NonnullByDefault
 public class SetBorderCommand extends AbstractCommand<CommandSource> {
 
     private final String worldKey = "world";

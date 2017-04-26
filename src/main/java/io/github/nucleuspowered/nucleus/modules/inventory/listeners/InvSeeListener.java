@@ -49,6 +49,17 @@ public class InvSeeListener extends ListenerBase {
         }
 
         CarriedInventory<?> carriedInventory = (CarriedInventory)targetInventory;
+        //noinspection ConstantConditions
+        if (carriedInventory.getCarrier() == null) {
+            if (plugin.isDebugMode()) {
+                // Tell the console
+                plugin.getLogger().warn("When trying to listen for the inventory events, targetInventory#getCarrier() is null. "
+                        + "THIS SHOULD NOT HAPPEN - this is a Sponge issue.");
+            }
+
+            return;
+        }
+
         if (!carriedInventory.getCarrier().isPresent() || !(carriedInventory.getCarrier().get() instanceof Player)) {
             return;
         }
